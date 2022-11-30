@@ -1,4 +1,5 @@
 import React from 'react';
+import s from './Counter.module.css';
 
 type CounterPropsType = {
 	count: number;
@@ -14,8 +15,8 @@ export const Counter: React.FC<CounterPropsType> = ({
 	countReset,
 }) => {
 	return (
-		<div className={'main'}>
-			<div className={`counter ${count === maxCount ? 'end' : ''}`}>
+		<div className={s.main}>
+			<div className={`${s.counter} ${count === maxCount ? s.end : ''}`}>
 				{count}
 			</div>
 			<div className={'buttons'}>
