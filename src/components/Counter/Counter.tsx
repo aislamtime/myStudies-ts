@@ -2,47 +2,40 @@ import React, { useState } from 'react';
 import s from './Counter.module.css';
 
 export function Counter() {
-	let [counter, setCounter] = useState<number>(0);
-	let [end, setEnd] = useState<boolean>(false);
-	let [disable, setDisable] = useState<boolean>(false);
+	let [count, setCount] = useState<number>(0);
 
-	const maxCount = 10;
+	const maxCount = 3;
 
-	const onIncClickHandler = () => {
-		if (counter < maxCount - 1) {
-			setCounter((counter += 1));
-			setDisable(true);
-		} else if (counter === maxCount - 1) {
-			setCounter((counter += 1));
-			setEnd(true);
-			setDisable(true);
-		}
-	};
-	const onResetClickHandler = () => {
-		setCounter(0);
-		setEnd(false);
-		setDisable(false);
-	};
+	const countInc = () => setCount((count += 1));
+	const countReset = () => setCount(0);
 
 	return (
 		<div className={s.counterWrap}>
 			<div className={s.main}>
-				<div className={`${s.counter} ${end ? s.end : ''}`}>{counter}</div>
+				<div className={`${s.counter} ${count === maxCount ? s.end : ''}`}>
+					{count}
+				</div>
 				<div className={s.buttons}>
-					<div
-						className={`${s.button} ${counter === maxCount ? s.disabled : ''}`}
-						onClick={onIncClickHandler}
+					<button
+						className={`${s.button}`}
+						onClick={countInc}
+						disabled={count === maxCount}
 					>
 						inc
-					</div>
-					<div
-						className={`${s.button} ${disable ? '' : s.disabled}`}
-						onClick={onResetClickHandler}
+					</button>
+					<button
+						className={`${s.button}`}
+						onClick={countReset}
+						disabled={count === 0}
 					>
 						reset
-					</div>
+					</button>
 				</div>
 			</div>
 		</div>
 	);
 }
+
+//${counter === maxCount ? s.disabled : ''}
+
+//${disable ? '' : s.disabled}
