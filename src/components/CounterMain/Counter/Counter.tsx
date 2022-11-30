@@ -2,14 +2,18 @@ import React from 'react';
 import s from './Counter.module.css';
 
 type CounterPropsType = {
+	error: boolean;
 	count: number;
+	minCount: number;
 	maxCount: number;
 	countInc: () => void;
 	countReset: () => void;
 };
 
 export const Counter: React.FC<CounterPropsType> = ({
+	error,
 	count,
+	minCount,
 	maxCount,
 	countInc,
 	countReset,
@@ -23,14 +27,14 @@ export const Counter: React.FC<CounterPropsType> = ({
 				<button
 					className={'button'}
 					onClick={countInc}
-					disabled={count === maxCount}
+					disabled={count === maxCount || error}
 				>
 					inc
 				</button>
 				<button
 					className={'button'}
 					onClick={countReset}
-					disabled={count === 0}
+					disabled={count === minCount || error}
 				>
 					reset
 				</button>
