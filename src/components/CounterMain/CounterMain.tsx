@@ -24,7 +24,7 @@ export function CounterMain() {
 				changeStartCount={changeStartCount}
 			/>
 			<Counter
-				count={count}
+				count={minCount}
 				maxCount={maxCount}
 				countInc={countInc}
 				countReset={countReset}

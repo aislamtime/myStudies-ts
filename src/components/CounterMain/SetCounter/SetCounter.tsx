@@ -14,6 +14,11 @@ export const SetCounter: React.FC<SetCountPropsType> = ({
 	changeMaxCount,
 	changeStartCount,
 }) => {
+	const maxInputRef = React.createRef<HTMLInputElement>();
+	const minInputRef = React.createRef<HTMLInputElement>();
+
+	const SetCountsHandler = () => {};
+
 	const onMaxCountChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
 		changeMaxCount(JSON.parse(e.currentTarget.value));
 	};
@@ -31,6 +36,7 @@ export const SetCounter: React.FC<SetCountPropsType> = ({
 						type='number'
 						value={maxCount}
 						onChange={onMaxCountChangeHandler}
+						ref={maxInputRef}
 					/>
 				</div>
 				<div className={s.inputBlock}>
@@ -40,11 +46,14 @@ export const SetCounter: React.FC<SetCountPropsType> = ({
 						type='number'
 						value={minCount}
 						onChange={onMinCountChangeHandler}
+						ref={maxInputRef}
 					/>
 				</div>
 			</div>
 			<div className={`buttons ${s.buttons}`}>
-				<button className='button'>Set</button>
+				<button className='button' onClick={SetCountsHandler}>
+					Set
+				</button>
 			</div>
 		</div>
 	);
