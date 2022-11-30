@@ -4,7 +4,7 @@ import './App.css';
 import { Button } from './components/Button';
 import { Input } from './components/Input';
 import { Filter, MoneyType } from './components/Filter';
-import { Counter } from './components/Counter/Counter';
+import { CounterMain } from './components/CounterMain/CounterMain';
 
 function App() {
 	//const [money, setMoney] = useState([
@@ -33,7 +33,7 @@ function App() {
 
 	return (
 		<div className='App'>
-			<Counter />
+			<CounterMain />
 
 			{/*<Input change={setTitle} title={title} />
 			<Button name='+' callBack={addMessage} />
