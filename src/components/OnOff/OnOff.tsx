@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import s from './OnOff.module.css';
 
-type OnOffType = {
+export type OnOffPropsType = {
 	active: boolean;
 	setActive: (active: boolean) => void;
 };
 
-export function OnOff(props: OnOffType) {
+export function OnOff(props: OnOffPropsType) {
 	//const [active, setActive] = useState(true);
 
 	return (
