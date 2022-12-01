@@ -9,14 +9,18 @@ import { CounterMain } from './components/CounterMain/CounterMain';
 import { Rating } from './components/Rating/Rating';
 import { Accordion } from './components/Accordion/Accordion';
 import { ValueType } from './components/Rating/Star/Star';
+import { OnOff } from './components/OnOff/OnOff';
 
 function App() {
 	const [ratingValue, setRatingValue] = useState<ValueType>(0);
 	const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
+	const [onoffActive, setOnoffActive] = useState<boolean>(true);
 
 	return (
 		<div className='App'>
 			{/*<CounterMain />*/}
+
+			<OnOff active={onoffActive} setActive={setOnoffActive} />
 
 			<Accordion
 				collapsed={accordionCollapsed}
