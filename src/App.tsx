@@ -12,24 +12,25 @@ import { ValueType } from './components/Rating/Star/Star';
 import { OnOff } from './components/OnOff/OnOff';
 
 function App() {
-	const [ratingValue, setRatingValue] = useState<ValueType>(0);
-	const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
-	const [onoffActive, setOnoffActive] = useState<boolean>(true);
+    const [ratingValue, setRatingValue] = useState<ValueType>(0);
+    const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
+    const [onoffActive, setOnoffActive] = useState<boolean>(true);
 
-	return (
-		<div className='App'>
-			{/*<CounterMain />*/}
+    return (
+        <div className='App'>
+            {/*<CounterMain />*/}
 
-			<OnOff active={onoffActive} setActive={setOnoffActive} />
+            <OnOff active={onoffActive} setActive={setOnoffActive} />
 
-			<Accordion
-				collapsed={accordionCollapsed}
-				setCollapsed={setAccordionCollapsed}
-			/>
+            <Accordion
+                title={'-- MENU --'}
+                collapsed={accordionCollapsed}
+                setCollapsed={setAccordionCollapsed}
+            />
 
-			<Rating value={ratingValue} setValue={setRatingValue} />
-		</div>
-	);
+            <Rating value={ratingValue} setValue={setRatingValue} />
+        </div>
+    );
 }
 
 export default App;
