@@ -1,15 +1,15 @@
-import { Story } from "@storybook/react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
 import React, { useState } from "react";
-import { Accordion, AccordionPropsType } from "./Accordion";
+import { Accordion } from "./Accordion";
 
 export default {
     title: 'components/Accordion',
-    component: Accordion
-};
+    component: Accordion,
+} as ComponentMeta<typeof Accordion>;
 
 const changeCollapse = (collapse: boolean) => console.log('Accordion want to change');
 
-const Template: Story<AccordionPropsType> = (args: AccordionPropsType) => <Accordion {...args} />;
+const Template: ComponentStory<typeof Accordion> = (args) => <Accordion {...args} />;
 
 export const NotCollapsed = Template.bind({})
 NotCollapsed.args = {
