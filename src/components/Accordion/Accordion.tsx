@@ -1,8 +1,19 @@
 import React from 'react';
 
 export type AccordionPropsType = {
+    /**
+     * Accondion title
+     */
     title: string,
+    /**
+     * Responsible for showing the acordion (true -> collapsed, false -> not collapsed)
+     */
     collapsed: boolean;
+    /**
+     * Changes the value of the collapsed to what came in the parameters
+     * @param collapsed Takes a Boolean value
+     * @returns void
+     */
     setCollapsed: (collapsed: boolean) => void;
 };
 
