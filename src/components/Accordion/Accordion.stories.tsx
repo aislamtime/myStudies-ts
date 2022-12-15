@@ -5,6 +5,13 @@ import { Accordion } from "./Accordion";
 export default {
     title: 'components/Accordion',
     component: Accordion,
+    argTypes: {
+        color: {
+            table: {
+                category: 'colors'
+            }
+        }
+    }
 } as ComponentMeta<typeof Accordion>;
 
 const changeCollapse = (collapse: boolean) => console.log('Accordion want to change');
