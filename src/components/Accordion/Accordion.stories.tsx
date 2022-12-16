@@ -7,6 +7,7 @@ export default {
     component: Accordion,
     argTypes: {
         setCollapsed: { action: 'setCollapsed' },
+        onClickItem: { action: 'onClickItem' },
         titleColor: {
             table: {
                 category: 'colors'
@@ -20,10 +21,10 @@ const Template: ComponentStory<typeof Accordion> = (args) => <Accordion {...args
 //const changeCollapse = (collapse: boolean) => console.log('Accordion want to change');
 
 const menuItems = [
-    'pizza',
-    'burger',
-    'tea',
-    'popcorn'
+    { title: 'pizza', value: 1 },
+    { title: 'burger', value: 2 },
+    { title: 'tea', value: 3 },
+    { title: 'popcorn', value: 4 },
 ]
 export const MenuUnCollapsed = Template.bind({})
 MenuUnCollapsed.args = {
@@ -34,11 +35,12 @@ MenuUnCollapsed.args = {
 }
 
 const usersItems = [
-    'Tima',
-    'Andrey',
-    'Nik',
-    'Tolya'
+    { title: 'Tima', value: 1 },
+    { title: 'Andrey', value: 2 },
+    { title: 'Nik', value: 3 },
+    { title: 'Tolya', value: 4 },
 ]
+
 export const UsersCollapsed = Template.bind({})
 UsersCollapsed.args = {
     title: "-- Users --",
@@ -48,12 +50,11 @@ UsersCollapsed.args = {
 }
 
 const randomItems = [
-    'car',
-    'purple',
-    'flower',
-    'you are king'
+    { title: 'car', value: 1 },
+    { title: 'purple', value: 2 },
+    { title: 'flower', value: 3 },
+    { title: 'you are king', value: 4 },
 ]
-
 export const ChangeMode = () => {
     let [collapsed, setCollapsed] = useState<boolean>(false)
 
@@ -62,6 +63,7 @@ export const ChangeMode = () => {
             title={"-- Click me --"}
             collapsed={collapsed}
             setCollapsed={collapse => setCollapsed(collapse)}
-            items={randomItems} />
+            items={randomItems}
+            onClickItem={() => console.log('Item was clicked')} />
     )
 }

@@ -1,6 +1,11 @@
 import { link } from 'fs';
 import React from 'react';
 
+type ItemType = {
+    title: string
+    value: any
+}
+
 export type AccordionPropsType = {
     /**
      * Accondion title
@@ -19,7 +24,8 @@ export type AccordionPropsType = {
     /**
      * Accordion title background color
      */
-    items: string[]
+    items: ItemType[]
+    onClickItem: (value: any) => void
     titleColor?: string
 };
 
@@ -28,14 +34,20 @@ export const Accordion: React.FC<AccordionPropsType> = ({
     collapsed,
     setCollapsed,
     items,
+    onClickItem,
     titleColor,
 }) => {
     const collapsing = () => setCollapsed(!collapsed);
 
     return (
         <div>
-            <AccordionTitle title={title} onCollapse={collapsing} titleColor={titleColor} />
-            {!collapsed && <AccordionBody items={items} />}
+            <AccordionTitle
+                title={title}
+                onCollapse={collapsing}
+                titleColor={titleColor} />
+            {!collapsed && <AccordionBody
+                items={items}
+                onClick={onClickItem} />}
         </div>
     );
 };
@@ -55,13 +67,14 @@ function AccordionTitle(props: AccordionTitlePropsType) {
 }
 
 type AccordionBodyPropsType = {
-    items: string[]
+    items: ItemType[]
+    onClick: (value: any) => void
 }
 
 function AccordionBody(props: AccordionBodyPropsType) {
     return (
         <ul>
-            {props.items.map(item => <li>{item}</li>)}
+            {props.items.map((item, index) => <li key={index} onClick={() => props.onClick(item.value)} >{item.title}</li>)}
         </ul>
     );
 }

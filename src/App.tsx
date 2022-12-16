@@ -17,10 +17,10 @@ function App() {
     const [onoffActive, setOnoffActive] = useState<boolean>(true);
 
     const menuItems = [
-        'pizza',
-        'burger',
-        'tea',
-        'popcorn'
+        { title: 'pizza', value: 1 },
+        { title: 'burger', value: 2 },
+        { title: 'tea', value: 3 },
+        { title: 'popcorn', value: 4 },
     ]
 
     return (
@@ -33,7 +33,10 @@ function App() {
                 title={'-- MENU --'}
                 collapsed={accordionCollapsed}
                 setCollapsed={setAccordionCollapsed}
-                color={'purple'}
+                titleColor={'purple'}
+                onClickItem={() => {
+                    console.log('Item was klicked');
+                }}
                 items={menuItems}
             />
 
