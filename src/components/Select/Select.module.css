@@ -1,0 +1,36 @@
+.select {
+}
+.select__title {
+	position: relative;
+	max-width: 70px;
+	text-align: center;
+	cursor: pointer;
+}
+.select__title:after {
+	content: '';
+	position: absolute;
+	right: -15px;
+	top: 50%;
+	/*transform: translateY(-50%);*/
+	border-top: 5px solid black;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid transparent;
+}
+.select__title.collapsed:after {
+	top: 20%;
+	border-top: 5px solid transparent;
+	border-left: 5px solid transparent;
+	border-right: 5px solid transparent;
+	border-bottom: 5px solid black;
+}
+.select__item {
+	min-height: 25px;
+	max-width: 70px;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.3s ease 0s;
+}
+.select__item:hover {
+	font-size: 18px;
+}
