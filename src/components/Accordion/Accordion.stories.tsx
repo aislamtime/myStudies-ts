@@ -6,6 +6,7 @@ export default {
     title: 'components/Accordion',
     component: Accordion,
     argTypes: {
+        setCollapsed: { action: 'setCollapsed' },
         color: {
             table: {
                 category: 'colors'
@@ -22,13 +23,13 @@ export const NotCollapsed = Template.bind({})
 NotCollapsed.args = {
     title: "-- MENU --",
     collapsed: false,
-    setCollapsed: changeCollapse,
+    //setCollapsed: changeCollapse,
 }
 export const Collapsed = Template.bind({})
 Collapsed.args = {
     title: "-- MENU --",
     collapsed: true,
-    setCollapsed: changeCollapse,
+    //setCollapsed: changeCollapse,
 }
 
 export const ChangeMode = () => {
