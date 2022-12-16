@@ -6,9 +6,12 @@ export default {
     title: 'components/Select',
     component: Select,
     argTypes: {
-        onClick: {
-            action: 'onClick'
+        onChange: {
+            action: 'onChange'
         },
+        setCollapsed: {
+            action: 'setCollapsed'
+        }
     }
 } as ComponentMeta<typeof Select>;
 
