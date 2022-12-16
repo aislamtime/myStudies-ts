@@ -16,6 +16,13 @@ function App() {
     const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
     const [onoffActive, setOnoffActive] = useState<boolean>(true);
 
+    const menuItems = [
+        'pizza',
+        'burger',
+        'tea',
+        'popcorn'
+    ]
+
     return (
         <div className='App'>
             {/*<CounterMain />*/}
@@ -26,6 +33,8 @@ function App() {
                 title={'-- MENU --'}
                 collapsed={accordionCollapsed}
                 setCollapsed={setAccordionCollapsed}
+                color={'purple'}
+                items={menuItems}
             />
 
             <Rating value={ratingValue} setValue={setRatingValue} />

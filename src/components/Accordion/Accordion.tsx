@@ -1,3 +1,4 @@
+import { link } from 'fs';
 import React from 'react';
 
 export type AccordionPropsType = {
@@ -18,21 +19,23 @@ export type AccordionPropsType = {
     /**
      * Accordion title background color
      */
-    color?: string
+    items: string[]
+    titleColor?: string
 };
 
 export const Accordion: React.FC<AccordionPropsType> = ({
     title,
     collapsed,
     setCollapsed,
-    color,
+    items,
+    titleColor,
 }) => {
     const collapsing = () => setCollapsed(!collapsed);
 
     return (
         <div>
-            <AccordionTitle title={title} onCollapse={collapsing} color={color} />
-            {!collapsed && <AccordionBody />}
+            <AccordionTitle title={title} onCollapse={collapsing} titleColor={titleColor} />
+            {!collapsed && <AccordionBody items={items} />}
         </div>
     );
 };
@@ -40,23 +43,25 @@ export const Accordion: React.FC<AccordionPropsType> = ({
 type AccordionTitlePropsType = {
     title: string;
     onCollapse: () => void;
-    color?: string
+    titleColor?: string
 };
 
 function AccordionTitle(props: AccordionTitlePropsType) {
     const styles = {
-        color: props.color ? props.color : 'black'
+        color: props.titleColor ? props.titleColor : 'black'
     }
     const onClickHandler = () => props.onCollapse();
     return <h2 onClick={onClickHandler} style={styles} >{props.title}</h2>;
 }
 
-function AccordionBody() {
+type AccordionBodyPropsType = {
+    items: string[]
+}
+
+function AccordionBody(props: AccordionBodyPropsType) {
     return (
         <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
+            {props.items.map(item => <li>{item}</li>)}
         </ul>
     );
 }
