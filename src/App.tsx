@@ -13,53 +13,45 @@ import { OnOff } from './components/OnOff/OnOff';
 import { Select } from './components/Select/Select';
 
 function App() {
-    const [ratingValue, setRatingValue] = useState<ValueType>(0);
-    const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
-    const [onoffActive, setOnoffActive] = useState<boolean>(true);
-    const [selectTitle, setSelectTitle] = useState<string>('Menu')
-    const [selectCollapsed, setSelectCollapsed] = useState<boolean>(false);
+	const [ratingValue, setRatingValue] = useState<ValueType>(0);
+	const [accordionCollapsed, setAccordionCollapsed] = useState<boolean>(false);
+	const [onoffActive, setOnoffActive] = useState<boolean>(true);
+	const [selectTitle, setSelectTitle] = useState<string>('Menu');
 
+	const menuItems = [
+		{ title: 'Pizza', value: 1 },
+		{ title: 'Tea', value: 2 },
+		{ title: 'Cola', value: 3 },
+		{ title: 'Coffe', value: 4 },
+	];
 
-    const menuItems = [
-        { title: 'Pizza', value: 1 },
-        { title: 'Tea', value: 2 },
-        { title: 'Cola', value: 3 },
-        { title: 'Coffe', value: 4 },
-    ]
+	const onSelectTitleChange = (value: any) => {
+		const menuItem = menuItems.find((i) => i.value === value);
+		setSelectTitle(menuItem ? menuItem.title : '');
+	};
 
-    const onSelectTitleChange = (title: string) => {
-        setSelectTitle(title)
-        setSelectCollapsed(true)
-    }
+	return (
+		<div className='App'>
+			{/*<CounterMain />*/}
 
-    return (
-        <div className='App'>
-            {/*<CounterMain />*/}
+			<OnOff active={onoffActive} setActive={setOnoffActive} />
 
-            <OnOff active={onoffActive} setActive={setOnoffActive} />
+			<Accordion
+				title={'-- MENU --'}
+				collapsed={accordionCollapsed}
+				setCollapsed={setAccordionCollapsed}
+				titleColor={'purple'}
+				onClickItem={() => {
+					console.log('Item was klicked');
+				}}
+				items={menuItems}
+			/>
 
-            <Accordion
-                title={'-- MENU --'}
-                collapsed={accordionCollapsed}
-                setCollapsed={setAccordionCollapsed}
-                titleColor={'purple'}
-                onClickItem={() => {
-                    console.log('Item was klicked');
-                }}
-                items={menuItems}
-            />
+			<Rating value={ratingValue} setValue={setRatingValue} />
 
-            <Rating value={ratingValue} setValue={setRatingValue} />
-
-            <Select
-                title={selectTitle}
-                items={menuItems}
-                onChange={onSelectTitleChange}
-                collapsed={selectCollapsed}
-                setCollapsed={setSelectCollapsed} />
-
-        </div>
-    );
+			<Select title={selectTitle} items={menuItems} onChange={onSelectTitleChange} />
+		</div>
+	);
 }
 
 export default App;

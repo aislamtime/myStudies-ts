@@ -2,16 +2,21 @@
 }
 .select__title {
 	position: relative;
-	max-width: 70px;
-	text-align: center;
+	width: 100px;
+	text-align: left;
+	padding: 5px 0 5px 25px;
 	cursor: pointer;
+	border: 1px solid black;
+	font-weight: 700;
+	font-size: 18px;
+}
+.select__title:focus {
 }
 .select__title:after {
 	content: '';
 	position: absolute;
-	right: -15px;
+	right: 15px;
 	top: 50%;
-	/*transform: translateY(-50%);*/
 	border-top: 5px solid black;
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
@@ -24,12 +29,23 @@
 	border-right: 5px solid transparent;
 	border-bottom: 5px solid black;
 }
+.select__items {
+	position: absolute;
+	transform: translateY(-1px);
+	border: 1px solid grey;
+}
 .select__item {
 	min-height: 25px;
-	max-width: 70px;
-	text-align: center;
+	width: 100px;
+	text-align: left;
+	font-style: italic;
+	padding: 5px 0 5px 25px;
 	cursor: pointer;
 	transition: all 0.3s ease 0s;
+}
+.select__item.hovered {
+	background-color: blueviolet;
+	color: white;
 }
 .select__item:hover {
 	font-size: 18px;
