@@ -1,4 +1,5 @@
-import React, { useState, KeyboardEvent } from 'react';
+import React, { useState, KeyboardEvent, useReducer } from 'react';
+import { reduser, TOGGLE, TO_COLLAPSE } from './reduser';
 import s from './Select.module.css';
 
 type ItemType = {
@@ -12,13 +13,13 @@ type SelectPropsType = {
 };
 
 export function Select(props: SelectPropsType) {
-	const [collapsed, setCollapsed] = useState<boolean>(true);
+	const [state, dispatch] = useReducer(reduser, { collapsed: true });
 	const [hoveredItem, setHoveredItem] = useState<any>(null);
 
-	const toggleCollapse = () => (collapsed ? setCollapsed(false) : setCollapsed(true));
+	const toggleCollapse = () => dispatch({ type: TOGGLE });
 	const onItemClick = (value: any) => {
 		props.onChange(value);
-		setCollapsed(true);
+		dispatch({ type: TO_COLLAPSE });
 	};
 	const onSelectBlur = () => onItemClick(hoveredItem);
 
@@ -52,14 +53,14 @@ export function Select(props: SelectPropsType) {
 		<div
 			className={s.select}
 			onKeyUp={onKeyUp}
-			onBlur={hoveredItem ? onSelectBlur : () => setCollapsed(true)}
+			onBlur={hoveredItem ? onSelectBlur : () => dispatch({ type: TO_COLLAPSE })}
 			tabIndex={0}
 		>
-			<div className={`${s.select__title} ${collapsed ? '' : s.collapsed}`} onClick={toggleCollapse}>
+			<div className={`${s.select__title} ${state.collapsed ? '' : s.collapsed}`} onClick={toggleCollapse}>
 				{props.title}
 			</div>
 
-			{!collapsed ? (
+			{!state.collapsed ? (
 				<div className={s.select__items}>
 					{props.items.map((item, index) => (
 						<div
