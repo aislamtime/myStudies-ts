@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useMemo, useState } from 'react'
+import React, { ChangeEvent, useCallback, useMemo, useState } from 'react'
 
 export const UseMemo = () => {
 	console.log('useMemo rendering')
@@ -28,6 +28,9 @@ export const UseMemo = () => {
 
 			<div>ResultA = {resultA}</div>
 			<div>ResultB = {resultB}</div>
+
+			<HelpToUseMemo />
+			<LikeUseCallback />
 		</div>
 	)
 }
@@ -90,3 +93,60 @@ export const HelpToUseMemo = () => {
 		</>
 	)
 }
+
+//! ----------------------------------------------------------------------------
+
+export const LikeUseCallback = () => {
+	console.log('LikeUseCallback')
+
+	const [counter, setCounter] = useState(0)
+	const [books, setBooks] = useState<string[]>(['React', 'JS', 'css', 'html'])
+
+	const addBook = () => {
+		const newBooks = [...books, 'Angular' + new Date().getTime()]
+		setBooks(newBooks)
+	}
+	const MemoizedAddBook = useMemo(() => addBook, [books]) // Это
+	const CallbackedAddBook = useCallback(() => {
+		// И это, одно и тоже)
+		const newBooks = [...books, 'Angular' + new Date().getTime()]
+		setBooks(newBooks)
+	}, [books])
+
+	//Метод filter создает новый массив, и что бы компонента Users не перерисовывалась
+	//так как в нее приходит новый массив при каждом обновлении счетчика, мы засовываем филтрацию в useMemo
+	const fiteredBooks = useMemo(() => {
+		//debugger
+		return books //.filter((book) => book.toLowerCase().indexOf('a'))
+	}, [books])
+
+	return (
+		<>
+			<button
+				onClick={() => {
+					setCounter(counter + 1)
+				}}
+			>
+				+
+			</button>
+			{/*<button onClick={addBook}>Add book</button>*/}
+			<NewMessagesCounter count={counter} />
+			<Books books={fiteredBooks} addBook={CallbackedAddBook} />
+		</>
+	)
+}
+
+const BooksSecret = (props: { books: string[]; addBook: () => void }) => {
+	console.log('BooksSecret')
+
+	return (
+		<div>
+			<button onClick={props.addBook}>Add book</button>
+
+			{props.books.map((b, i) => (
+				<div key={i}>{b}</div>
+			))}
+		</div>
+	)
+}
+const Books = React.memo(BooksSecret)

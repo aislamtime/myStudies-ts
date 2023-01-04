@@ -11,7 +11,7 @@ import { Accordion } from './components/Accordion/Accordion'
 import { ValueType } from './components/Rating/Star/Star'
 import { OnOff } from './components/OnOff/OnOff'
 import { Select } from './components/Select/Select'
-import { HelpToUseMemo, UseMemo } from './hooks/useMemo'
+import { UseMemo } from './hooks/useMemo'
 
 function App() {
 	const [ratingValue, setRatingValue] = useState<ValueType>(0)
@@ -57,7 +57,6 @@ function App() {
 					//! --------------------- HOOKS --------------------------
 				}
 				<UseMemo />
-				<HelpToUseMemo />
 			</div>
 		</div>
 	)
